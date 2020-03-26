@@ -55,3 +55,4 @@ def redis_user_info_hash_get():
     print(res)
 
 # redis_user_info_hash_get()
+client = redis.StrictRedis(connection_pool = pool)
