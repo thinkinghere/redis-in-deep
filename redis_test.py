@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import redis
+import json
 
 pool = redis.ConnectionPool(host='127.0.0.1',port='6380')
 
@@ -33,8 +34,24 @@ def redis_list_itre(name):
     else:
         print "%s is not list type" %name
  
-for item in redis_list_itre("books"):
-    print item
+# for item in redis_list_itre("books"):
+#     print item
 
 
+# 使用Hash存取Userinfo
 
+def redis_user_info_hash_set():
+    user_info = {
+        "name": "Ha",
+        "age": 18,
+    }
+    r.hmset('user01', user_info)
+
+# redis_hash()
+
+
+def redis_user_info_hash_get():
+    res = r.hmget('user01', 'name', 'age')
+    print(res)
+
+# redis_user_info_hash_get()
