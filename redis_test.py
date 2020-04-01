@@ -56,3 +56,5 @@ def redis_user_info_hash_get():
 
 # redis_user_info_hash_get()
 client = redis.StrictRedis(connection_pool = pool)
+
+r.zadd('zz', 'n1', 1, 'n2', 2)
