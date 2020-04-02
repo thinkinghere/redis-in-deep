@@ -5,7 +5,7 @@ import uuid
 import json
 
 pool = redis.ConnectionPool(host='127.0.0.1',port='6380')
-
+，
 clinet = redis.Redis(connection_pool=pool)
 
 class attrdict(dict):
