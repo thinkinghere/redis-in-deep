@@ -14,19 +14,19 @@ class Funnel(object):
         now_ts = time.time()
         delta_ts = now_ts - self.leaking_ts  # 距离上一次漏水过去了多久
         delta_quota = delta_ts * self.leaking_rate  # 又可以腾出不少空间了
-        if delta_quota < 1:
-            # 腾的空间太少，那就等下次吧
+        if delta_quota < 1:  # 腾的空间太少，那就等下次吧
+            print("delta_quota is too short", delta_quota)
             return
         self.left_quota += delta_quota  # 增加剩余空间
         self.leaking_ts = now_ts  # 记录漏水时间
-        if self.left_quota > self.capacity:
-            # 剩余空间不得高于容量
+        if self.left_quota > self.capacity:  # 剩余空间不得高于容量
             self.left_quota = self.capacity
 
     def watering(self, quota):
         self.make_space()
-        if self.left_quota >= quota:
-            # 判断剩余空间是否足够
+        # print("left_quota", self.left_quota)
+        # print("quota", quota)
+        if self.left_quota >= quota:  # 判断剩余空间是否足够
             self.left_quota -= quota  # 每次调用会将容量-1
             return True
         return False
@@ -48,5 +48,6 @@ def is_action_allowed(user_id, action_key, capacity, leaking_rate):
 
 
 if __name__ == '__main__':
-    for i in range(20):
-        print(is_action_allowed('user01', 'reply', 15, 0.5))
+    for i in range(100):
+        print(is_action_allowed('user01', 'reply', 15, 0.1))
+        time.sleep(3)
