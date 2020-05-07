@@ -1,0 +1,8 @@
+
+redis-benchmark 
+[root@k8s-worker usr]# /usr/bin/redis-benchmark -t set -q
+SET: 61462.82 requests per second
+
+主要是read的读操作需要等到IO
+
+ref:https://www.cnblogs.com/lxs1314/p/8399069.html
